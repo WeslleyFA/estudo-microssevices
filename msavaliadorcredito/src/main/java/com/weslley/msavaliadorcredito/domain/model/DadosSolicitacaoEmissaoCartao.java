@@ -1,0 +1,13 @@
+package com.weslley.msavaliadorcredito.domain.model;
+
+import lombok.Data;
+
+import java.math.BigDecimal;
+
+@Data
+public class DadosSolicitacaoEmissaoCartao {
+
+    private Long idCartao;
+    private String cpf;
+    private BigDecimal limiteLiberado;
+}

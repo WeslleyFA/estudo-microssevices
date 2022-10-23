@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: mscartoes
+  rabbitmq:
+    host: rabbitmq
+    port: 5672 #essa e a porta normal, sem ser a d aqle pra acessar no navegador
+    username: guest
+    password: guest
+
+server:
+  port: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://weslley:w12345@eureka-serv:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value} }
+
+mq:
+  queues:
+    emissao-cartoes: emissao-cartoes
