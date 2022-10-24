@@ -1,0 +1,58 @@
+version: '3.3'
+
+services:
+  eureka-serv:
+    container_name: eureka-serv
+    build:
+      context: ./eurekaserver
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - ms-rede
+
+  msgateway:
+    build:
+      context: ./mscloudgateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+    networks:
+      - ms-rede
+
+  rabbitmq:
+    image: rabbitmq:3.10-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - ms-rede
+
+  msclientes:
+    build:
+      context: ./msclientes
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - ms-rede
+
+  mscartoes:
+    build:
+      context: ./mscartoes
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - ms-rede
+
+  msavaliadorcredito:
+    build:
+      context: ./msavaliadorcredito
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - ms-rede
+
+networks:
+  ms-rede:
+    driver: bridge
